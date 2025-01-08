@@ -1,0 +1,44 @@
+Write a C program to convert Decimal to Hexadecimal number system
+Code : 
+#include <stdio.h>
+
+void decimalToHexadecimal(int num) {
+    // Array to store hexadecimal number
+    char hex[100];
+    int i = 0;
+    
+    // Mapping decimal values to hexadecimal
+    while (num != 0) {
+        int remainder = num % 16;
+        
+        // If remainder is greater than 9, map it to a letter (A-F)
+        if (remainder < 10) {
+            hex[i] = remainder + '0';
+        } else {
+            hex[i] = remainder - 10 + 'A';
+        }
+        
+        i++;
+        num = num / 16;
+    }
+
+    // Printing hexadecimal number in reverse order
+    printf("Hexadecimal: ");
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%c", hex[j]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int decimal;
+    
+    // Input from user
+    printf("Enter a decimal number: ");
+    scanf("%d", &decimal);
+
+    decimalToHexadecimal(decimal);
+
+    return 0;
+}
+
