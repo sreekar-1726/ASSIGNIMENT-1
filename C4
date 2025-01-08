@@ -1,0 +1,48 @@
+Write a C program to swap first and last digits of a number.
+Code : 
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int number, firstDigit, lastDigit, swappedNumber, numDigits, powerOfTen;
+
+    // Input from the user
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    // Handle negative numbers
+    int isNegative = 0;
+    if (number < 0) {
+        isNegative = 1;
+        number = -number;
+    }
+
+    // Find the last digit
+    lastDigit = number % 10;
+
+    // Find the first digit
+    int temp = number;
+    while (temp >= 10) {
+        temp /= 10; // Remove the last digit
+    }
+    firstDigit = temp;
+
+    // Find the number of digits
+    numDigits = log10(number) + 1;
+    powerOfTen = pow(10, numDigits - 1);
+
+    // Swap first and last digits
+    swappedNumber = number % powerOfTen; // Remove the first digit
+    swappedNumber = swappedNumber / 10 * 10 + firstDigit; // Replace last digit with first
+    swappedNumber = lastDigit * powerOfTen + swappedNumber; // Add the last digit at the front
+
+    // Restore negative sign if necessary
+    if (isNegative) {
+        swappedNumber = -swappedNumber;
+    }
+
+    // Display the result
+    printf("The number after swapping first and last digits is: %d\n", swappedNumber);
+
+    return 0;
+}
